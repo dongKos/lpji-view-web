@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import MapComponent from './components/MapComponent';
+import InfoComponent from './components/InfoComponent';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [selectedPolygon, setSelectedPolygon] = useState(null);
+
+    return (
+            <div className="App">
+                <header className="App-header">
+                    <h1>입지뷰</h1>
+                </header>
+                <div style={{display: 'flex', width: '100vw', minHeight: '80vh'}}>
+                    <MapComponent onPolygonClick={setSelectedPolygon}/>
+                    <InfoComponent selectedPolygon={selectedPolygon}/>
+                </div>
+                <div>
+                    <p>Powered By Dongko</p>
+                </div>
+            </div>
+    );
 }
 
 export default App;
